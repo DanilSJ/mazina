@@ -1,0 +1,138 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand, .nav-link {
+    font-weight: bold;
+    color: #FFFFFF !important;
+}
+
+.navbar {
+    background-color: #343a40 !important;
+}
+
+.nav-link:hover {
+    color: #FFD700 !important;
+}
+
+.product-card img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background-color: #FFD700;
+    border-color: #FFD700;
+}
+
+.btn-primary:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.section-title {
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #dee2e6;
+    margin: 40px 0;
+}
+
+.footer {
+    background-color: #343a40;
+    color: white;
+    padding: 40px 0;
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer a {
+    color: #FFD700;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.about-section {
+    background-color: #343a40;
+    color: white;
+    padding: 40px 20px;
+    margin-top: 40px;
+}
+
+.about-section h2 {
+    color: #FFD700;
+}
+
+.about-section p {
+    margin-top: 20px;
+}
+
+.content-wrapper {
+    flex: 1;
+}
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #FFD700;
+    color: #343a40;
+    border: none;
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.scroll-to-top.show {
+    display: flex;
+}
+
+.scroll-to-top:hover {
+    background-color: #ffc107;
+}
+
+.scroll-to-top svg {
+    transform: rotate(180deg); /* Поворот стрелки вверх */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}

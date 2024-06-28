@@ -1,0 +1,135 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'css/index.css' %}">{% endblock %}
+
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="container mt-5">
+        <!-- Популярные товары -->
+        <h2 class="section-title">Популярные товары</h2>
+        <div class="row g-4">
+            {% for shirt in shirt_top %}
+            <div class="col-md-4">
+                <div class="card product-card shadow-sm">
+                    <img src="{{ shirt.img.url }}" class="card-img-top" alt="{{ shirt.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ shirt.name }}</h5>
+                        <p class="card-text">{{ shirt.about }}</p>
+                        <a href="{% url 'buy_shirt' pk=shirt.pk %}" class="btn btn-primary">Купить</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for shorts in shorts_top %}
+            <div class="col-md-4">
+                <div class="card product-card shadow-sm">
+                    <img src="{{ shorts.img.url }}" class="card-img-top" alt="{{ shorts.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ shorts.name }}</h5>
+                        <p class="card-text">{{ shorts.about }}</p>
+                        <a href="{% url 'buy_shorts' pk=shorts.pk %}" class="btn btn-primary">Купить</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for sneakers in sneakers_top %}
+            <div class="col-md-4">
+                <div class="card product-card shadow-sm">
+                    <img src="{{ sneakers.img.url }}" class="card-img-top" alt="{{ sneakers.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ sneakers.name }}</h5>
+                        <p class="card-text">{{ sneakers.about }}</p>
+                        <a href="{% url 'buy_sneakers' pk=sneakers.pk %}" class="btn btn-primary">Купить</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <hr class="section-divider">
+
+        <!-- Товары со скидкой -->
+        <h2 class="section-title">Товары со скидкой</h2>
+        <div class="row g-4">
+            {% for shirt in shirt_discounted %}
+            <div class="col-md-4">
+                <div class="card product-card shadow-sm">
+                    <img src="{{ shirt.img.url }}" class="card-img-top" alt="{{ shirt.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ shirt.name }}</h5>
+                        <p class="card-text">{{ shirt.about }}</p>
+                        <div class="product-price">
+                            {{ shirt.discounted_price }} руб.
+                            <span class="product-discount">{{ shirt.price }} руб.</span>
+                        </div>
+                        <a href="{% url 'buy_shirt' pk=shirt.pk %}" class="btn btn-primary">Купить</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for shorts in shorts_discounted %}
+            <div class="col-md-4">
+                <div class="card product-card shadow-sm">
+                    <img src="{{ shorts.img.url }}" class="card-img-top" alt="{{ shorts.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ shorts.name }}</h5>
+                        <p class="card-text">{{ shorts.about }}</p>
+                        <div class="product-price">
+                            {{ shorts.discounted_price }} руб.
+                            <span class="product-discount">{{ shorts.price }} руб.</span>
+                        </div>
+                        <a href="{% url 'buy_shorts' pk=shorts.pk %}" class="btn btn-primary">Купить</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for sneakers in sneakers_discounted %}
+            <div class="col-md-4">
+                <div class="card product-card shadow-sm">
+                    <img src="{{ sneakers.img.url }}" class="card-img-top" alt="{{ sneakers.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ sneakers.name }}</h5>
+                        <p class="card-text">{{ sneakers.about }}</p>
+                        <div class="product-price">
+                            {{ sneakers.discounted_price }} руб.
+                            <span class="product-discount">{{ sneakers.price }} руб.</span>
+                        </div>
+                        <a href="{% url 'buy_sneakers' pk=sneakers.pk %}" class="btn btn-primary">Купить</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <hr class="section-divider">
+
+        <!-- Раздел "О нас" -->
+        <div class="about-section">
+            <h2 class="section-title">О нас</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget pharetra purus. Cras nec efficitur eros, a suscipit metus. 
+                Vivamus in velit ut erat elementum bibendum. Praesent non cursus mauris, eget ullamcorper orci. Duis tempor nec quam in venenatis.
+                Nulla facilisi. Etiam vel enim nec lorem sodales bibendum a at lorem. Aenean id turpis et mauris malesuada blandit et in odio. 
+                Mauris fringilla suscipit quam, vel vehicula nisi auctor ut. Vestibulum non velit fringilla, finibus justo non, congue mauris.
+            </p>
+            <p>
+                Donec luctus dapibus nibh a bibendum. Nullam lobortis nibh et suscipit dapibus. Curabitur dictum lacus ac tellus facilisis tristique.
+                Aliquam erat volutpat. Aenean id urna ex. Nam ac justo justo. Vivamus tincidunt erat nec diam interdum ultricies. Nulla aliquam sapien 
+                ut dolor volutpat, ut gravida purus pretium. Etiam et urna metus. Integer vitae suscipit elit.
+            </p>
+            <p>
+                Integer vehicula, justo sit amet cursus ultrices, felis libero egestas sapien, eget gravida metus orci a lacus. Nam tincidunt 
+                bibendum malesuada. Aliquam erat volutpat. Suspendisse venenatis purus nec tortor tempus, id sagittis erat ullamcorper. Duis ac 
+                lorem id velit feugiat pharetra. Curabitur scelerisque libero nec nunc pellentesque condimentum. Sed pharetra tincidunt odio ac 
+                vehicula. Morbi tristique nunc et metus viverra, id congue eros faucibus.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

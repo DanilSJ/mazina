@@ -1,0 +1,121 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'css/product.css' %}">{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Фильтры -->
+        <div class="col-lg-3">
+            <div class="filters-container">
+                <h1 class="text-center mb-4">Фильтры для шортов</h1>
+                <form method="GET" action="{% url 'shorts' %}">
+                    <!-- Фильтр по размерам -->
+                    <div class="mb-4">
+                        <h2 class="filter-title">Размеры</h2>
+                        {% for size in unique_sizes %}
+                            <div class="form-check">
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    name="size" 
+                                    value="{{ size }}" 
+                                    id="size-{{ size }}"
+                                    {% if size|stringformat:"s" in selected_sizes %} checked {% endif %}
+                                >
+                                <label class="form-check-label" for="size-{{ size }}">
+                                    {{ size }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Фильтр по цветам -->
+                    <div class="mb-4">
+                        <h2 class="filter-title">Цвета</h2>
+                        {% for color in unique_colors %}
+                            <div class="form-check">
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    name="color" 
+                                    value="{{ color }}" 
+                                    id="color-{{ color }}"
+                                    {% if color in selected_colors %} checked {% endif %}
+                                >
+                                <label class="form-check-label" for="color-{{ color }}">
+                                    {{ color }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Фильтр по брендам -->
+                    <div class="mb-4">
+                        <h2 class="filter-title">Бренд</h2>
+                        {% for company in unique_companies %}
+                            <div class="form-check">
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    name="company" 
+                                    value="{{ company }}" 
+                                    id="company-{{ company }}"
+                                    {% if company in selected_companies %} checked {% endif %}
+                                >
+                                <label class="form-check-label" for="company-{{ company }}">
+                                    {{ company }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Кнопка применения фильтров -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Применить фильтры</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Товары -->
+        <div class="col-lg-9">
+            <div class="products-container">
+                <div class="row g-4">
+                    {% for el in data %}
+                        <div class="col-md-4">
+                            <div class="card product-card shadow-sm">
+                                <div class="position-relative">
+                                    <img src="{{ el.img.url }}" class="card-img-top" alt="{{ el.name }}">
+                                    {% if el.discount %}
+                                        <div class="discount-badge">
+                                            -{{ el.discount }}%
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ el.name }}</h5>
+                                    <p class="card-text">{{ el.about }}</p>
+                                    {% if el.discount %}
+                                        <p class="card-text">
+                                            <span class="original-price">{{ el.price }} руб.</span>
+                                            <br>
+                                            <span class="discounted-price">{{ el.discounted_price }} руб.</span>
+                                        </p>
+                                    {% else %}
+                                        <p class="card-text">{{ el.price }} руб.</p>
+                                    {% endif %}
+                                    <a href="{% url 'buy_shorts' pk=el.pk %}" class="btn btn-primary">Купить</a>
+                                </div>
+                            </div>
+                        </div>             
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

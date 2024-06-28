@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин</title>
+    <link href="{% static 'bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    {% block style %}
+    
+    {% endblock %}
+
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index' %}">Магазин</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Главная</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Категории
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url 'shorts' %}">Шорты</a></li>
+                            <li><a class="dropdown-item" href="{% url 'sneakers' %}">Обувь</a></li>
+                            <li><a class="dropdown-item" href="{% url 'shirt' %}">Футболки</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+        {% block content %}
+            
+        {% endblock %}
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>О нас</h5>
+                    <p>Мы предоставляем лучшие товары по самым доступным ценам. Следите за нашими новостями и акциями!</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Навигация</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'index' %}">Главная</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Контакты</h5>
+                    <p>Email: info@shop.com</p>
+                    <p>Телефон: +7 (123) 456-78-90</p>
+                    <p>Адрес: г. Москва, ул. Примерная, д. 1</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center mt-3">
+                <p>&copy; 2024 Магазин. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    <button class="scroll-to-top" aria-label="Наверх">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.5a.5.5 0 0 1 .5.5v10.793l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 12.293V1.5a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+    </button>
+    <script src="{% static 'bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script>
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            var scrollToTopBtn = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        }
+    
+        document.querySelector('.scroll-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
